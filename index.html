@@ -1,48 +1,102 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>520</title>
-  <style>
-    :root{
-      --pink: #ffc0cb;
-      --pink-soft: #ffe6ef;
-      --text: #c2185b;
-    }
-    html,body{
-      height:100%;
-      margin:0;
-    }
-    body{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      background: linear-gradient(to bottom, #ffffff 0%, var(--pink-soft) 100%);
-      font-family: "PingFang SC","Segoe UI",Roboto,Helvetica,Arial,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
-    }
-    .content{
-      padding: 2rem 3rem;
-      border-radius: 20px;
-      color: var(--text);
-      font-size: clamp(28px, 6vw, 64px);
-      font-weight: 700;
-      line-height: 1.25;
-      text-shadow: 0 2px 10px rgba(255,105,180,.35);
-      backdrop-filter: blur(2px);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      /* 小小的呼吸动画，更有心跳感 */
-      animation: breathe 3s ease-in-out infinite;
-    }
-    @keyframes breathe{
-      0%,100%{ transform: scale(1); }
-      50%{ transform: scale(1.02); }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>520</title>
+<style>
+  /* 背景和全局样式 */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff, #ffd6e7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-rounded, "SF Pro Rounded", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: bold;
+    color: #e91e63;
+    overflow: hidden;
+  }
+
+  /* 每一页 */
+  .page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .page.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 打字机效果容器 */
+  .typewriter {
+    font-size: clamp(24px, 6vw, 48px);
+    border-right: .15em solid #e91e63; /* 光标 */
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* 打字机动画关键帧 */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  @keyframes blink {
+    0%, 50% { border-color: #e91e63; }
+    50%, 100% { border-color: transparent; }
+  }
+
+  /* 应用打字机动画 */
+  .animate {
+    width: 0;
+    animation: typing steps(var(--chars)) 2s forwards, blink .7s step-end infinite;
+  }
+</style>
 </head>
 <body>
-  <div class="content">陈景禾 我爱你 永远爱你😘</div>
+
+<!-- 三页内容 -->
+<div class="page active" data-text="你是陈景禾么？是的话就点一下屏幕"></div>
+<div class="page" data-text="看来你是陈景禾了！我有话和你说，再点一下"></div>
+<div class="page" data-text="我爱你 😘 永远"></div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  let currentPage = 0;
+
+  function showPage(index) {
+    pages.forEach((page, i) => {
+      page.classList.toggle('active', i === index);
+      page.innerHTML = '';
+    });
+    const text = pages[index].dataset.text;
+    const span = document.createElement('div');
+    span.className = 'typewriter animate';
+    span.style.setProperty('--chars', text.length);
+    span.textContent = text;
+    pages[index].appendChild(span);
+  }
+
+  document.body.addEventListener('click', () => {
+    currentPage++;
+    if (currentPage >= pages.length) currentPage = pages.length - 1;
+    showPage(currentPage);
+  });
+
+  // 初始化第一页
+  showPage(0);
+</script>
+
 </body>
 </html>
