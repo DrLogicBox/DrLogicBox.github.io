@@ -1,50 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哎呦你好</title>
-    <style>
-        body {
-            font-family: KaiTi, Arial, sans-serif; /* 设置字体为楷体，如果用户计算机上没有楷体，则使用 Arial，最后备用 sans-serif */
-            text-align: center;
-            background-color: #ffe4e1; /* 淡粉色 */
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #ff69b4; /* 粉色 */
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        img {
-            max-width: 100%;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>520</title>
+  <style>
+    /* 全局与背景 */
+    :root {
+      --bg-start: #ffffff;   /* 白 */
+      --bg-end:   #ffd6e7;   /* 粉 */
+      --text:     #e91e63;   /* 玫红 */
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
+      font-family: ui-rounded, "SF Pro Rounded", "PingFang SC", "Hiragino Sans GB",
+                   "Microsoft YaHei", "Noto Sans CJK SC", system-ui, -apple-system,
+                   Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 中央文案 */
+    .center {
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.25;
+      /* 自适应字号：移动端略小，桌面更大 */
+      font-size: clamp(28px, 6vw, 64px);
+      text-shadow: 0 2px 8px rgba(233, 30, 99, 0.2);
+      padding: 0 1rem;
+      user-select: none;
+    }
+
+    /* 可选的小心动动画（轻微跳动） */
+    .pulse {
+      display: inline-block;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.05); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>哎呦，你好</h1>
-        <p>我想对你说...</p>
-        <img src="111.png" alt="图片1">
-        <p>这是我们共同走过的日子中的一点回忆...</p>
-        <img src="path_to_image2.jpg" alt="图片2">
-        <p>每一次的相处都让我更加确信...</p>
-        <img src="path_to_image3.jpg" alt="图片3">
-        <p>你给我的生活注入了如此美好的色彩...</p>
-        <p>我愿意与你一起走过更多的时光，共同书写属于我们的故事。</p>
-        <p>亲爱的，你愿意做我的女朋友吗？</p>
-        <p>期待着你的答复。</p>
-    </div>
+  <div class="center">
+    <span class="pulse">陈景禾 我爱你 永远爱你😘</span>
+  </div>
 </body>
 </html>
