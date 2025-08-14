@@ -25,6 +25,7 @@
     position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -62,6 +63,39 @@
     width: 0;
     animation: typing steps(var(--chars)) 2s forwards, blink .7s step-end infinite;
   }
+
+  /* 爱心样式 */
+  .heart {
+    width: 80px;
+    height: 80px;
+    background-color: #ff4f81;
+    position: relative;
+    transform: rotate(-45deg);
+    margin-top: 20px;
+    animation: heartbeat 1s infinite ease-in-out;
+  }
+  .heart::before, .heart::after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    background-color: #ff4f81;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .heart::before {
+    top: -40px;
+    left: 0;
+  }
+  .heart::after {
+    left: 40px;
+    top: 0;
+  }
+
+  /* 跳动动画 */
+  @keyframes heartbeat {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.2); }
+  }
 </style>
 </head>
 <body>
@@ -69,7 +103,7 @@
 <!-- 三页内容 -->
 <div class="page active" data-text="你是陈景禾么？是的话就点一下屏幕"></div>
 <div class="page" data-text="看来你是陈景禾了！我有话和你说，再点一下"></div>
-<div class="page" data-text="我爱你 😘 永远"></div>
+<div class="page" data-text="我爱你 😘 永远" data-heart="true"></div>
 
 <script>
   const pages = document.querySelectorAll('.page');
@@ -86,6 +120,13 @@
     span.style.setProperty('--chars', text.length);
     span.textContent = text;
     pages[index].appendChild(span);
+
+    // 如果有爱心
+    if (pages[index].dataset.heart) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      pages[index].appendChild(heart);
+    }
   }
 
   document.body.addEventListener('click', () => {
