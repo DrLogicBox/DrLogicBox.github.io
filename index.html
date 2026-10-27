@@ -1,97 +1,76 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>我是zbx</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: linear-gradient(to bottom, #ffffff, #ffd6e7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: ui-rounded, "SF Pro Rounded", "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-weight: bold;
-    color: #e91e63;
-    overflow: hidden;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>个人介绍</title>
+  <style>
+    :root {
+      color-scheme: light;
+    }
 
-  .page {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    padding: 1rem;
-    text-align: center;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .page.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #f6f8ff, #e9f7ff);
+      color: #1f2937;
+      padding: 24px;
+    }
 
-  .typewriter {
-    font-size: clamp(24px, 6vw, 48px);
-    border-right: .15em solid #e91e63;
-    white-space: nowrap;
-    overflow: hidden;
-  }
+    .card {
+      width: min(720px, 100%);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+      padding: 32px;
+      line-height: 1.8;
+    }
 
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  @keyframes blink {
-    0%, 50% { border-color: #e91e63; }
-    50%, 100% { border-color: transparent; }
-  }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 36px);
+    }
 
-  .animate {
-    width: 0;
-    animation: typing steps(var(--chars)) 2s forwards, blink .7s step-end infinite;
-  }
-</style>
+    .role {
+      margin: 0 0 20px;
+      color: #2563eb;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 17px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
-
-<div class="page active" data-text="你是陈景禾么？是的话就点一下屏幕"></div>
-<div class="page" data-text="看来你是陈景禾了！我有话和你说，再点一下"></div>
-<div class="page" data-text="没事，我就犯个贱哈哈哈"></div>
-<div class="page" data-text="猜对了，确实还有"></div>
-<div class="page" data-text="爱你爱你😘永远爱你"></div>
-
-<script>
-  const pages = document.querySelectorAll('.page');
-  let currentPage = 0;
-
-  function showPage(index) {
-    pages.forEach((page, i) => {
-      page.classList.toggle('active', i === index);
-      page.innerHTML = '';
-    });
-    const text = pages[index].dataset.text;
-    const span = document.createElement('div');
-    span.className = 'typewriter animate';
-    span.style.setProperty('--chars', text.length);
-    span.textContent = text;
-    pages[index].appendChild(span);
-  }
-
-  document.body.addEventListener('click', () => {
-    currentPage++;
-    if (currentPage >= pages.length) currentPage = pages.length - 1;
-    showPage(currentPage);
-  });
-
-  showPage(0);
-</script>
-
+  <main class="card">
+    <h1>你好，我是DrLogicBox</h1>
+    <p class="role">前端开发爱好者 / 持续学习者</p>
+    <p>我热爱通过代码把想法变成真实可见的网页，也喜欢在实践中不断优化细节与体验。</p>
+    <p>目前主要专注于：</p>
+    <ul>
+      <li>使用 HTML、CSS、JavaScript 构建简洁实用的页面</li>
+      <li>学习现代前端工程化与组件化开发方式</li>
+      <li>记录成长过程，分享技术与生活中的灵感</li>
+    </ul>
+  </main>
 </body>
 </html>
